@@ -1,4 +1,5 @@
 from flask import Flask, request
+from fractions import Fraction
 
 app = Flask(__name__)
 
@@ -10,10 +11,20 @@ def index():
 
 @app.route('/add')
 def addition():
-    value1 = request.args.get('A', default=0, type=int)
-    value2 = request.args.get('B', default=0, type=int)
+    value1 = request.args.get('A', default=0, type=str)
+    try:
+        value1 = Fraction(value1)
+    except ZeroDivisionError:
+        return "A's denominator shouldn't be zero! \n"
+
+    value2 = request.args.get('B', default=0, type=str)
+    try:
+        value2 = Fraction(value2)
+    except ZeroDivisionError:
+        return "B's denominator shouldn't be zero! \n"
+
     result = value1+value2
-    return '%d \n' % result
+    return '%.1f \n' % result
 
 
 if __name__ == "__main__":
