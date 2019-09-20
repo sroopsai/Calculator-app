@@ -4,13 +4,7 @@ from fractions import Fraction
 app = Flask(__name__)
 
 
-@app.route('/')
-def index():
-    return 'Usage;\n<Operation>?A=<Value1>&B=<Value2>\n'
-
-
-@app.route('/add')
-def addition():
+def take_inputs():
     value1 = request.args.get('A', default=0, type=str)
     try:
         value1 = Fraction(value1)
@@ -25,8 +19,24 @@ def addition():
         return "B's denominator shouldn't be zero! \n"
     except ValueError:
         return "B's value should be a number (includes fraction, float, integer). \n"
-    result = value1+value2
-    return '%.1f \n' % result
+    return value1, value2
+
+
+@app.route('/')
+def index():
+    return 'Usage;\n<Operation>?A=<Value1>&B=<Value2>\n'
+
+
+@app.route('/add')
+def addition():
+    try:
+        value1, value2 = take_inputs()
+        result = value1 + value2
+    except ValueError:
+        warning_msg = take_inputs()
+        return warning_msg
+    else:
+        return '%.1f \n' % result
 
 
 if __name__ == "__main__":
