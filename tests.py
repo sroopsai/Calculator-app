@@ -16,6 +16,13 @@ class TestOnlineCalculator(unittest.TestCase):
         response_data = self.app.get('/')
         self.assertEqual(b'Usage;\n<Operation>?A=<Value1>&B=<Value2>\n', response_data.data)
 
+    def test_addition(self):
+        """Tests page with /add route, testing addition feature of the calculator,
+        right now only integers are being tested."""
+
+        response_data = self.app.get('/add?A=5&B=3')
+        self.assertEqual(b'8 \n', response_data.data)
+
 
 if __name__ == '__main__':
     unittest.main()
