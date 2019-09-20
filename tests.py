@@ -57,6 +57,14 @@ class TestOnlineCalculator(unittest.TestCase):
         response_data = self.app.get('/add?A=-2&B=4/0')
         self.assertEqual(b"B's denominator shouldn't be zero! \n", response_data.data)
 
+        # when A is a non-number type
+        response_data = self.app.get('/add?A=x&B=zingo')
+        self.assertEqual(b"A's value should be a number (includes fraction, float, integer). \n", response_data.data)
+
+        # when B is a non-number type
+        response_data = self.app.get('/add?A=1&B=y')
+        self.assertEqual(b"B's value should be a number (includes fraction, float, integer). \n", response_data.data)
+
 
 if __name__ == '__main__':
     unittest.main()
