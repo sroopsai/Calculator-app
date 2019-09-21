@@ -27,8 +27,8 @@ def index():
     return 'Usage;\n<Operation>?A=<Value1>&B=<Value2>\n'
 
 
-@app.route('/mul')
-def multiplication():
+@app.route('/add')
+def addition():
     try:
         value1, value2 = take_inputs()
         result = value1 + value2
@@ -37,6 +37,18 @@ def multiplication():
         return warning_msg
     else:
         return '%.1f \n' % result
+
+
+@app.route('/sub')
+def subtraction():
+    try:
+        value1, value2 = take_inputs()
+        result = value1 - value2
+    except ValueError:
+        waning_msg = take_inputs()
+        return waning_msg
+    else:
+        return "%.1f \n" % result
 
 
 if __name__ == "__main__":
