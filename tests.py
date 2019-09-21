@@ -13,7 +13,7 @@ class TestOnlineCalculator(unittest.TestCase):
     def test_division(self):
         """Tests page with /div route, testing division feature of the calculator,
         right now only integers are being tested.
-        //TODO Support Rational Numbers, floats."""
+        //DONE Rational Numbers Support enabled!"""
 
         response_data = self.app.get('/div?A=5&B=3')
         self.assertEqual(b'1.7 \n', response_data.data)
