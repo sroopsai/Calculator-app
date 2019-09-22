@@ -32,7 +32,7 @@ def division():
     try:
         value1, value2 = take_inputs()
         try:
-            result = value1 / value2
+            result = ((value1)/(value2))
         except ZeroDivisionError:
             warning_msg = "B's value shouldn't be zero! \n"
             return warning_msg
