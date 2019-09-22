@@ -22,7 +22,7 @@ class TestOnlineCalculator(unittest.TestCase):
 
         # rational numbers testing
         response_data = self.app.get('/div?A=5/3&B=3/4')
-        self.assertEqual(b'0.14 \n', response_data.data)
+        self.assertEqual(b'2.22 \n', response_data.data)
 
         # when both A and B are both floats
         response_data = self.app.get('/div?A=5.4&B=3.4678')
@@ -42,7 +42,7 @@ class TestOnlineCalculator(unittest.TestCase):
 
         # when A is an int and B is a fraction
         response_data = self.app.get('/div?A=5&B=3/4')
-        self.assertEqual(b'0.42 \n', response_data.data)
+        self.assertEqual(b'6.67 \n', response_data.data)
 
         # corner cases testing
         # when A = x/0 where x belongs to any integer
@@ -63,7 +63,7 @@ class TestOnlineCalculator(unittest.TestCase):
 
         # Extra case when B is zero
         response_data = self.app.get('/div?A=1&B=0')
-        self.assertEqual(b"B's shouldn't be zero! \n", response_data.data)
+        self.assertEqual(b"B's value shouldn't be zero! \n", response_data.data)
 
 
 if __name__ == '__main__':
