@@ -40,6 +40,9 @@ def division():
         warning_msg = take_inputs()
         return warning_msg
     else:
+        if float(result).is_integer():
+            result = int(result)
+            return '%d \n' % result
         return '%.2f \n' % result
 
 

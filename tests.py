@@ -7,7 +7,6 @@ class TestOnlineCalculator(unittest.TestCase):
 
     def setUp(self):
         """Sets up the app for testing"""
-
         main.app.testing = True
         self.app = main.app.test_client()
 
