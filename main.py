@@ -42,5 +42,20 @@ def subtraction():
         return '%.2f \n' % result
 
 
+@app.route('/mul')
+def multiplication():
+    try:
+        value1, value2 = take_inputs()
+        result = value1 * value2
+    except ValueError:
+        warning_msg = take_inputs()
+        return warning_msg
+    else:
+        if float(result).is_integer():
+            result = int(result)
+            return '%d \n' % result
+        return '%.2f \n' % result
+
+
 if __name__ == "__main__":
     app.run()
