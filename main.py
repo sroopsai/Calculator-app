@@ -27,11 +27,11 @@ def index():
     return 'Usage;\n<Operation>?A=<Value1>&B=<Value2>\n'
 
 
-@app.route('/add')
-def addition():
+@app.route('/sub')
+def subtraction():
     try:
         value1, value2 = take_inputs()
-        result = value1 + value2
+        result = value1 - value2
     except ValueError:
         warning_msg = take_inputs()
         return warning_msg
