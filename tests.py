@@ -10,13 +10,7 @@ class TestOnlineCalculator(unittest.TestCase):
         main.app.testing = True
         self.app = main.app.test_client()
 
-    def test_empty_page(self):
-        """Tests page with empty route or no route"""
-
-        response_data = self.app.get('/')
-        self.assertEqual(b'Usage;\n<Operation>?A=<Value1>&B=<Value2>\n', response_data.data)
-
-    def test_addition(self):
+    def test_subtraction(self):
         """Tests page with /sub route, testing subtraction feature of the calculator,
         right now all types of numbers being tested"""
 
