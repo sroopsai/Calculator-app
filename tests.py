@@ -15,6 +15,10 @@ class TestOnlineCalculator(unittest.TestCase):
         right now all types of numbers being tested
         //Done Support for Rational numbers enabled!"""
 
+        # printing integral value correctly
+        response_data = self.app.get('/div?A=4&B=2')
+        self.assertEqual(b'2 \n', response_data.data)
+
         # integer numbers testing
         response_data = self.app.get('/div?A=5&B=3')
         self.assertEqual(b'1.67 \n', response_data.data)
