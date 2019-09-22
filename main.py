@@ -26,6 +26,20 @@ def take_inputs():
 def index():
     return 'Usage;\n<Operation>?A=<Value1>&B=<Value2>\n'
 
+@app.route('/add')
+def addition():
+    try:
+        value1, value2 = take_inputs()
+        result = value1 + value2
+    except ValueError:
+        warning_msg = take_inputs()
+        return warning_msg
+    else:
+        if float(result).is_integer():
+            result = int(result)
+            return '%d \n' % result
+        return '%.2f \n' % result
+
 
 @app.route('/sub')
 def subtraction():
@@ -47,6 +61,25 @@ def multiplication():
     try:
         value1, value2 = take_inputs()
         result = value1 * value2
+    except ValueError:
+        warning_msg = take_inputs()
+        return warning_msg
+    else:
+        if float(result).is_integer():
+            result = int(result)
+            return '%d \n' % result
+        return '%.2f \n' % result
+
+
+@app.route('/div')
+def division():
+    try:
+        value1, value2 = take_inputs()
+        try:
+            result = ((value1)/(value2))
+        except ZeroDivisionError:
+            warning_msg = "B's value shouldn't be zero! \n"
+            return warning_msg
     except ValueError:
         warning_msg = take_inputs()
         return warning_msg
