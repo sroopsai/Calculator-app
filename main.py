@@ -36,7 +36,10 @@ def addition():
         warning_msg = take_inputs()
         return warning_msg
     else:
-        return '%.1f \n' % result
+        if float(result).is_integer():
+            result = int(result)
+            return '%d \n' % result
+        return '%.2f \n' % result
 
 
 if __name__ == "__main__":
