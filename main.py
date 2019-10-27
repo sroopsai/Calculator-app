@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request
 from fractions import Fraction
 
 app = Flask(__name__)
