@@ -13,6 +13,7 @@ class TestOnlineCalculator(unittest.TestCase):
         self.app = main.app.test_client() 
 
     def test_empty_page(self):
+        """ Tests the page with no route"""
         response_data = self.app.get('/')
         self.assertEqual(b'Usage;\n<Operation>?A=<Value1>&B=<Value2>\n', response_data.data)
 
@@ -21,6 +22,7 @@ class TestOnlineCalculator(unittest.TestCase):
         self.assertEqual(b'Usage;\n<Operation>?A=<Value1>&B=<Value2>\n', response_data.data)
 
     def test_addition(self):
+        """ Testing addition feature"""
         # integer numbers testing
         response_data = self.app.get('/add?A=5&B=3')
         self.assertEqual(b'8 \n', response_data.data)
@@ -177,6 +179,7 @@ class TestOnlineCalculator(unittest.TestCase):
         self.assertEqual(b"B's value should be a number (includes fraction, float, integer). \n", response_data.data)
 
     def test_division(self):
+        """ Testing division feature of the calculatore"""
         # printing integral value correctly
         response_data = self.app.get('/div?A=4&B=2')
         self.assertEqual(b'2 \n', response_data.data)
